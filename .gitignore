@@ -7,7 +7,6 @@
 .idea/
 *.iml
 *.iws
-*.xml
 
 # Mac
 .DS_Store
@@ -20,7 +19,6 @@ jsonReports/
 test-output/
 automation.out
 src/main/java/testing/
-CPP.iml
 
 # config properties
 #config.properties
