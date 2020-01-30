@@ -1,0 +1,79 @@
+package com.cucumberFramework.pop;
+
+import com.cucumberFramework.baseTest.BasePage;
+import com.cucumberFramework.support.WaitHelper;
+import com.cucumberFramework.support.WebElementHelper;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class DemoModePage extends BasePage {
+
+    WebDriver driver;
+
+    @FindBy(xpath = "//span[contains(text(), \"DEMO\")]")
+    private WebElement demoBanner;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"Dashboard\")]]")
+    private WebElement dashboardButton;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"Live State\")]]")
+    private WebElement liveStateButton;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"Analysis\")]]")
+    private WebElement analysisButton;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"sonnenCommunity\")]]")
+    private WebElement communityButton;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"sonnenFlat\")]]")
+    private WebElement flatButton;
+
+    @FindBy(xpath = "//a[./span[contains(text(), \"sonnenBatterie\")]]")
+    private WebElement batterieButton;
+
+    @FindBy(xpath = "//span[contains(text(),'Leave Demo')]")
+    private WebElement leavingButton;
+
+    public DemoModePage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        waitHelper = new WaitHelper(driver);
+        element = new WebElementHelper(waitHelper, driver);
+    }
+
+    @Override
+    public boolean isPageDisplayed() {
+        return element.isDisplayed(demoBanner);
+    }
+
+    public void proceedToDashboard() {
+        element.click(dashboardButton);
+    }
+
+    public void proceedToLiveState() {
+        element.click(liveStateButton);
+    }
+
+    public void proceedToAnalysis() {
+        element.click(analysisButton);
+    }
+
+    public void proceedToCommunity() {
+        element.click(communityButton);
+    }
+
+    public void proceedToFlat() {
+        element.click(flatButton);
+    }
+
+    public void proceedToBatterie() {
+        element.click(batterieButton);
+    }
+
+    public void leaveDemo() {
+        element.click(leavingButton);
+    }
+
+}

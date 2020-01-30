@@ -1,0 +1,23 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+*.xml
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+jsonReports/
+test-output/
+
+# config properties
+#config.properties

@@ -1,0 +1,78 @@
+2020-01-30 11:01:985 INFO  ServiceHooks:45 - Customer can see his personal data is pass
+2020-01-30 11:01:280 INFO  ServiceHooks:45 - Customer can change his password is pass
+2020-01-30 11:01:482 INFO  ServiceHooks:45 - Customer can change other settings is pass
+2020-01-30 11:01:899 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:931 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:473 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:498 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:616 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:639 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:794 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:816 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:94 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:144 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:304 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:332 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:668 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:693 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:883 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:916 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:21 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:851 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:867 INFO  ServiceHooks:45 - Customer goes to demo mode is pass
+2020-01-30 11:01:348 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:376 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:477 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:971 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:04 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:683 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:699 INFO  ServiceHooks:45 - Customer has correct credentials is pass
+2020-01-30 11:01:282 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:308 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:413 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:952 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:649 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:670 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:686 INFO  ServiceHooks:45 - Customer has incorrect credentials is pass
+2020-01-30 11:01:91 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:117 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:213 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:683 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:952 INFO  ServiceHooks:45 - Customer can see his password is pass
+2020-01-30 11:01:832 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:921 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:132 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:136 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:153 INFO  ServiceHooks:45 - Customer is able to log out is pass
+2020-01-30 11:01:856 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:400 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:159 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:723 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:737 INFO  ServiceHooks:45 - Customer has correct credentials is pass
+2020-01-30 11:01:452 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:03 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:330 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:350 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:365 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:384 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:397 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:415 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:14 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:29 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:157 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:170 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:550 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:566 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:789 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:802 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:899 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:919 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:261 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:277 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:711 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:729 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:147 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:167 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:759 INFO  WaitHelper:28 - waiting for element visibilityOf..
+2020-01-30 11:01:898 INFO  WaitHelper:31 - element is visible..
+2020-01-30 11:01:913 INFO  ServiceHooks:45 - Customer has incorrect credentials is pass

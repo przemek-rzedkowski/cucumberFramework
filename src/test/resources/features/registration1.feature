@@ -45,5 +45,5 @@ Feature: Can Customer sign up
     Then Customer sees PP checkbox's color turned red
     And Customer cannot submit form due to inactive button
     When Customer uses email address that already exists in SF
-    Then Customer submit form
+    Then Customer submits form
     And Customer sees message that account already exists

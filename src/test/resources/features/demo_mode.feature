@@ -4,7 +4,7 @@ Feature: Can Customer experience app without log in
 
   #@ignore
   Scenario: Customer goes to demo mode
-    Given Customer is on Landing Page
+    Given Customer is on Landing page
     When Customer proceed to Demo mode
     Then Customer sees welcoming page
     When Customer goes to Dashboard Page
@@ -22,4 +22,4 @@ Feature: Can Customer experience app without log in
     When Customer switches to sonnenBatterie
     Then Customer sees demo sonnenBatterie page
     When Customer leaves Demo mode
-    Then Customer is on Login Page
+    Then Customer should see Email input
