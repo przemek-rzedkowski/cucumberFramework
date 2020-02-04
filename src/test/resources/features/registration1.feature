@@ -1,49 +1,45 @@
-@ignore
+#@ignore
 Feature: Can Customer sign up
   Customer should be able to register new account
 
+  Background:
+    Given Customer proceed to Register Page
+    When Customer is on Registration Page
+
   #@ignore
   Scenario: Customer has correct credentials
-    Given Customer proceed to Register Page
-    When Customer is on Registration Page
-    And Customer uses Correct Credentials to register
+    And Customer uses correct credentials to register
     Then Customer is able to proceed to step 2 of registration
 
-  @ignore
-  Scenario Outline: Customer has incorrect credentials
-    Given Customer proceed to Register Page
-    When Customer is on Registration Page
-    And Customer "<action>"
-    Then Customer can see "<result>"
-    Examples:
-      |action | result |
-      |left Name field blank | lpass |
-
   #@ignore
-  Scenario: Customer has incorrect credentials
-    Given Customer proceed to Register Page
-    When Customer is on Registration Page
+  Scenario: Customer provides incorrect credentials
     And Customer leaves all fields blank
     Then Customer sees three error messages
-    And Customer cannot submit form due to inactive button
-    And Customer leaves Name field blank
-    Then Customer sees an error message under name field
-    And Customer cannot submit form due to inactive button
-    When Customer leaves Last name blank
-    Then Customer sees an error message under last name field
-    And Customer cannot submit form due to inactive button
-    When Customer leaves Mail field blank
-    Then Customer sees an error message under email field
     And Customer cannot submit form due to inactive button
     When Customer uses incorrect email format
     Then Customer sees an error message under email field
     And Customer cannot submit form due to inactive button
-    When Customer doesn't tick TnC checkbox
-    Then Customer sees TnC checkbox's color turned red
-    And Customer cannot submit form due to inactive button
-    When Customer doesn't tick PP checkbox
-    Then Customer sees PP checkbox's color turned red
-    And Customer cannot submit form due to inactive button
     When Customer uses email address that already exists in SF
     Then Customer submits form
     And Customer sees message that account already exists
+
+  #@ignore
+  Scenario Outline: Customer leaves fields empty
+    When Customer leaves "<element>" field blank
+    Then Customer sees an error message under "<element>" field
+    And Customer cannot submit form due to inactive button
+    Examples:
+      |element|
+      |name|
+      |last name|
+      |mail|
+
+  #@ignore
+  Scenario Outline: Customer does not check required checkboxes
+    When Customer doesn't tick "<box>" checkbox
+    Then Customer sees "<box>" checkbox's color turned red
+    And Customer cannot submit form due to inactive button
+    Examples:
+      |box|
+      |TnC|
+      |PP|

@@ -17,84 +17,58 @@ public class DemoModeSteps extends TestBase {
     CommunityPage communityPage = new CommunityPage(driver);
     BatteriePage batteriePage = new BatteriePage(driver);
 
+    @When("^Customer switches to \"([^\"]*)\"$")
+    public void userGoesToPage(String arg1) {
+        demoModePage.proceedToPage(arg1);
+    }
+
+    @Then("^Customer sees demo \"([^\"]*)\" page$")
+    public void userSeesPage(String arg1) {
+        if (arg1.equals("Dashboard")) {
+            assertTrue(dashboardPage.isPageDisplayed());
+        } else if (arg1.equals("Live State")) {
+            assertTrue(liveStatePage.isPageDisplayed());
+        } else if (arg1.equals("Analysis")) {
+            assertTrue(analysisPage.isPageDisplayed());
+        } else if (arg1.equals("sonnenCommunity")) {
+            assertTrue(communityPage.isPageDisplayed());
+        } else if (arg1.equals("sonnenFlat")) {
+            assertTrue(flatPage.isPageDisplayed());
+        } else if (arg1.equals("sonnenBatterie")) {
+            assertTrue(batteriePage.isPageDisplayed());
+        }
+    }
 
     @Then("^Customer sees welcoming page$")
     public void userSeesWelcomingPage() {
         assertTrue(demoModePage.isPageDisplayed());
     }
 
-    @When("^Customer goes to Dashboard Page$")
-    public void userGoesToDashboard() {
-        demoModePage.proceedToDashboard();
+    @When("^Customer shuts down tutorial message on \"([^\"]*)\"$")
+    public void userShutsDownTutorial(String arg1) {
+        if (arg1.equals("Live State")) {
+            liveStatePage.shutDownTutorial();
+        } else {
+            return;
+        }
     }
 
-    @Then("^Customer sees demo Dashboard page$")
-    public void userSeesDemoDashboard() {
-        assertTrue(dashboardPage.isPageDisplayed());
-    }
-
-    @When("^Customer switches to Live State$")
-    public void userSwitchesToLiveState() {
-        demoModePage.proceedToLiveState();
-    }
-
-    @Then("^Customer sees demo Live State$")
-    public void userSeesDemoLiveState() {
-        assertTrue(liveStatePage.isPageDisplayed());
-    }
-
-    @When("^Customer shuts down tutorial message$")
-    public void userShutsDownTutorial() {
-        liveStatePage.shutDownTutorial();
-    }
-
-    @Then("^Customer can't see tutorial message$")
-    public void userCannotSeeTutorial() {
-        assertTrue(liveStatePage.userCannotSeeTutorial());
-    }
-
-    @When("^Customer switches to Analysis$")
-    public void userSwitchesToAnalysis() {
-        demoModePage.proceedToAnalysis();
-    }
-
-    @Then("^Customer sees demo Analysis page$")
-    public void userSeesDemoAnalysis() {
-        assertTrue(analysisPage.isPageDisplayed());
-    }
-
-    @When("^Customer switches to sonnenCommunity$")
-    public void userSwitchesToSonnenCommunity() {
-        demoModePage.proceedToCommunity();
-    }
-
-    @Then("^Customer sees demo sonnenCommunity page$")
-    public void userSeesDemoSonnenCommunity() {
-        assertTrue(communityPage.isPageDisplayed());
-    }
-
-    @When("^Customer switches to sonnenFlat$")
-    public void userSwitchesToSonnenFlat() {
-        demoModePage.proceedToFlat();
-    }
-
-    @Then("^Customer sees demo sonnenFlat page$")
-    public void userSeesDemoSonnenFlat() {
-        assertTrue(flatPage.isPageDisplayed());
-    }
-
-    @When("^Customer switches to sonnenBatterie$")
-    public void userSwitchesToSonnenBatterie() {
-        demoModePage.proceedToBatterie();
-    }
-
-    @Then("^Customer sees demo sonnenBatterie page$")
-    public void userSeesDemoSonnenBatterie() {
-        assertTrue(batteriePage.isPageDisplayed());
+    @Then("^Customer can't see tutorial message on \"([^\"]*)\"$")
+    public void userCannotSeeTutorial(String arg1) {
+        if (arg1.equals("Live State")) {
+            assertTrue(liveStatePage.userCannotSeeTutorial());
+        } else {
+            assertTrue(true);
+        }
     }
 
     @When("^Customer leaves Demo mode$")
     public void userReturnsToLoginPage() {
         demoModePage.leaveDemo();
+    }
+
+    @When("^Customer goes back to registration$")
+    public void userGoesRegister() {
+        demoModePage.goToRegistration();
     }
 }

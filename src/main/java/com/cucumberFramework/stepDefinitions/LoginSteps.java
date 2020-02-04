@@ -18,7 +18,6 @@ public class LoginSteps extends TestBase {
 
     LoginPage loginPage = new LoginPage(driver);
     DashboardPage dashboardPage = new DashboardPage(driver);
-    WaitHelper waitHelper = new WaitHelper(driver);
     LandingPage landingPage = new LandingPage(driver);
     UserMenu userMenu = new UserMenu(driver);
 
@@ -77,8 +76,16 @@ public class LoginSteps extends TestBase {
         loginPage.openUserMenu();
     }
 
+    @When("^Customer proceed to Demo mode from Login Page$")
+    public void userGoesToDemoFromLogin() { loginPage.goToDemoFromLogin();}
+
     @And("^Customer logs out$")
     public void userLogsOut() {
         userMenu.logOut();
+    }
+
+    @Given("^Customer log in SalesForce$")
+    public void userLogsInSF() {
+        loginPage.userSF();
     }
 }

@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import com.cucumberFramework.enums.Browsers;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -31,6 +30,10 @@ public class TestBase {
 		} else {
 			String host = "http://localhost:4444/wd/hub";
 			chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("window-size=1920,1080");
+			chromeOptions.addArguments("start-maximized");
+			chromeOptions.addArguments("--no-sandbox");
+			chromeOptions.addArguments("--disable-dev-shm-usage");
 			driver = new RemoteWebDriver(new URL(host), chromeOptions);
 		}
 		driver.get("https://my.dev.sonnen.de/");

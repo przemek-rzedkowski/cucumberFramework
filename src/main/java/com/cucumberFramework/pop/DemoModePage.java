@@ -8,6 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.testng.Assert.assertTrue;
+
 public class DemoModePage extends BasePage {
 
     WebDriver driver;
@@ -36,6 +38,9 @@ public class DemoModePage extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'Leave Demo')]")
     private WebElement leavingButton;
 
+    @FindBy(xpath = "//span[contains(text(),'Register')]")
+    private WebElement registerButton;
+
     public DemoModePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -48,32 +53,26 @@ public class DemoModePage extends BasePage {
         return element.isDisplayed(demoBanner);
     }
 
-    public void proceedToDashboard() {
-        element.click(dashboardButton);
-    }
-
-    public void proceedToLiveState() {
-        element.click(liveStateButton);
-    }
-
-    public void proceedToAnalysis() {
-        element.click(analysisButton);
-    }
-
-    public void proceedToCommunity() {
-        element.click(communityButton);
-    }
-
-    public void proceedToFlat() {
-        element.click(flatButton);
-    }
-
-    public void proceedToBatterie() {
-        element.click(batterieButton);
+    public void proceedToPage(String arg1) {
+        if (arg1.equals("Dashboard")) {
+            element.click(dashboardButton);
+        } else if (arg1.equals("Live State")) {
+            element.click(liveStateButton);
+        } else if (arg1.equals("Analysis")) {
+            element.click(analysisButton);
+        } else if (arg1.equals("sonnenCommunity")) {
+            element.click(communityButton);
+        } else if (arg1.equals("sonnenFlat")) {
+            element.click(flatButton);
+        } else if (arg1.equals("sonnenBatterie")) {
+            element.click(batterieButton);
+        }
     }
 
     public void leaveDemo() {
         element.click(leavingButton);
     }
+
+    public void goToRegistration() { element.click(registerButton); }
 
 }

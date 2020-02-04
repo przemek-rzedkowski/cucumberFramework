@@ -1,6 +1,10 @@
-@ignore
+#@ignore
 Feature: Can Customer log in
   Customer should be able to log in
+
+  @ignore
+  Scenario: test
+    Given Customer log in SalesForce
 
   #@ignore
   Scenario: Customer has correct credentials

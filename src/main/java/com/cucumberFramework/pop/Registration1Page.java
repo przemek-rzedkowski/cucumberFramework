@@ -82,84 +82,75 @@ public class Registration1Page extends BasePage {
                 && element.isDisplayed(mailInvalidError);
     }
 
-    public void leaveNameBlank() {
-        element.click(nameField);
-        element.type(lastNameField, "Szewc");
-        element.type(mailField, "somemail@gmail.com");
-        element.click(tncBox);
-        element.click(ppBox);
-    }
-
-    public void leaveLastNameBlank() {
-        element.type(nameField, "Marcin");
-        element.clearFields(lastNameField);
-        element.click(lastNameField);
-        element.type(mailField, "somemail@gmail.com");
-        element.click(tncBox);
-        element.click(ppBox);
-    }
-
-    public void leaveMailBlank() {
-        element.type(nameField, "Marcin");
-        element.type(lastNameField, "Szewc");
-        element.clearFields(mailField);
-        element.click(mailField);
-    }
-
     public void typeIncorrectEmailAddress() {
         element.type(nameField, "Marcin");
         element.type(lastNameField, "Szewc");
         element.type(mailField, "!@#$%^&*");
+        element.click(tncBox);
+        element.click(ppBox);
     }
 
     public void typeEmailAlreadyTaken() {
         element.type(nameField, "Marcin");
         element.type(lastNameField, "Szewc");
         element.type(mailField, "portal.sonnen@gmail.com");
-        element.click(tncBox);
-        element.click(ppBox);
-    }
-
-    public void doNotTickTNC() {
-
-        element.type(nameField, "Marcin");
-        element.type(lastNameField, "Szewc");
-        element.type(mailField, "somemail@gmail.com");
-        //element.click(tncBox);
-        element.click(ppBox);
-    }
-
-    public void doNotTickPP() {
-        element.type(nameField, "Marcin");
-        element.type(lastNameField, "Szewc");
-        element.type(mailField, "somemail@gmail.com");
-       // element.click(tncBox);
-        element.click(ppBox);
-    }
-
-    public boolean isNameErrorDisplaying() {
-        return element.isDisplayed(nameError);
-    }
-
-    public boolean isLastNameErrorDisplaying() {
-        return element.isDisplayed(lastNameError);
     }
 
     public boolean isEmailErrorDisplaying() {
         return element.isDisplayed(mailInvalidError);
     }
 
-    public boolean isTnCCheckboxRed() {
-        return element.hasClass(tncBoxError, "sw-form-checkbox--error");
-    }
-
-    public boolean isPPCheckboxRed() {
-        return element.hasClass(ppBoxError, "sw-form-checkbox--error");
-    }
-
     public void userSubmitsForm() {
         element.click(submitButton);
     }
 
+    public void leaveFieldBlank(String arg1) {
+        element.type(nameField, "Marcin");
+        element.type(lastNameField, "Szewc");
+        element.type(mailField, "somemail@gmail.com");
+        element.click(tncBox);
+        element.click(ppBox);
 
+        if (arg1.equals("name")) {
+            element.clearFields(nameField);
+        } else if (arg1.equals("last name")) {
+            element.clearFields(lastNameField);
+        } else if (arg1.equals("mail")) {
+            element.clearFields(mailField);
+        }
+    }
+
+    public boolean isErrorDisplaying(String arg1) {
+        if (arg1.equals("name")) {
+            return element.isDisplayed(nameError);
+        } else if (arg1.equals("last name")) {
+            return element.isDisplayed(lastNameError);
+        } else if (arg1.equals("mail")){
+            return element.isDisplayed(mailInvalidError);
+        }
+        return false;
+    }
+
+    public void doNotTick(String arg1) {
+        element.type(nameField, "Marcin");
+        element.type(lastNameField, "Szewc");
+        element.type(mailField, "somemail@gmail.com");
+        element.click(tncBox);
+        element.click(ppBox);
+
+        if (arg1.equals("TnC")) {
+            element.click(tncBox);
+        } else if (arg1.equals("PP")) {
+            element.click(ppBox);
+        }
+    }
+
+    public boolean isCheckboxRed(String arg1) {
+        if (arg1.equals("TnC")) {
+            return element.hasClass(tncBoxError, "sw-form-checkbox--error");
+        } else if (arg1.equals("PP")) {
+            return element.hasClass(ppBoxError, "sw-form-checkbox--error");
+        }
+        return false;
+    }
 }
