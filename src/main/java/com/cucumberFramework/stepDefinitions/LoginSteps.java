@@ -86,6 +86,6 @@ public class LoginSteps extends TestBase {
 
     @Given("^Customer log in SalesForce$")
     public void userLogsInSF() {
-        loginPage.userSF();
+
     }
 }

@@ -12,16 +12,16 @@ public class Registration1Page extends BasePage {
     
     WebDriver driver;
 
-    @FindBy(xpath = "//input[@id='first_name']")
+    @FindBy(xpath = "//input[@id='firstName']")
     private WebElement nameField;
 
-    @FindBy(xpath = "//div[./input[@name = 'first_name']]//p")
+    @FindBy(xpath = "//div[./input[@name = 'firstName']]//p")
     private WebElement nameError;
 
-    @FindBy(xpath = "//input[@id='last_name']")
+    @FindBy(xpath = "//input[@id='lastName']")
     private WebElement lastNameField;
 
-    @FindBy(xpath = "//div[./input[@name = 'last_name']]//p")
+    @FindBy(xpath = "//div[./input[@name = 'lastName']]//p")
     private WebElement lastNameError;
 
     @FindBy(xpath = "//input[@id='email']")
@@ -57,9 +57,9 @@ public class Registration1Page extends BasePage {
     }
 
     public void registerUsingCorrectCredentials() {
-        element.type(nameField, "Marcin");
-        element.type(lastNameField, "Szewc");
-        element.type(mailField, "somemail@gmail.com");
+        element.type(nameField, "Dante");
+        element.type(lastNameField, "Alighieri");
+        element.type(mailField, "some.mail@gmail.com");
         element.click(tncBox);
         element.click(ppBox);
         element.click(submitButton);
@@ -152,5 +152,30 @@ public class Registration1Page extends BasePage {
             return element.hasClass(ppBoxError, "sw-form-checkbox--error");
         }
         return false;
+    }
+
+    public boolean isMailUnique() {
+        return mailField.getAttribute("value").equals("some.mail@gmail.com");
+    }
+
+    public boolean areFieldsFilled() {
+        element.click(ppBox);
+        element.click(tncBox);
+        if (nameField.getAttribute("value").equals("Dante") &&
+            lastNameField.getAttribute("value").equals("Alighieri") &&
+            mailField.getAttribute("value").equals("some.mail@gmail.com") &&
+            element.hasClass(tncBoxError, "sw-form-checkbox--error") &&
+            element.hasClass(ppBoxError, "sw-form-checkbox--error")) {
+                return true;
+        }
+        return false;
+    }
+
+    public void typeEmailAlreadyInSF() {
+        element.type(nameField, "Marcin");
+        element.type(lastNameField, "Szewc");
+        element.type(mailField, "test.sonnen@gmail.com");
+        element.click(tncBox);
+        element.click(ppBox);
     }
 }

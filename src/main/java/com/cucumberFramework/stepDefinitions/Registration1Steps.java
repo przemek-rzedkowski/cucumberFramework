@@ -1,7 +1,7 @@
 package com.cucumberFramework.stepDefinitions;
 
 import com.cucumberFramework.baseTest.TestBase;
-import com.cucumberFramework.pop.OnboardingConfirmationPage;
+import com.cucumberFramework.pop.HaveAnAccountPage;
 import com.cucumberFramework.pop.Registration1Page;
 import com.cucumberFramework.pop.Registration2Page;
 import cucumber.api.java.en.*;
@@ -12,7 +12,7 @@ public class Registration1Steps extends TestBase {
 
     Registration1Page registration1Page = new Registration1Page(driver);
     Registration2Page registration2Page = new Registration2Page(driver);
-    OnboardingConfirmationPage onboardingConfirmationPage = new OnboardingConfirmationPage(driver);
+    HaveAnAccountPage haveAnAccountPage = new HaveAnAccountPage(driver);
 
     @When("^Customer is on Registration Page$")
     public void userIsOnRegistrationPage() { assertTrue(registration1Page.isPageDisplayed()); }
@@ -59,7 +59,7 @@ public class Registration1Steps extends TestBase {
     }
 
     @And("^Customer sees message that account already exists$")
-    public void userSeesMessageThatAccountExists() { assertTrue(onboardingConfirmationPage.isPageDisplayed()); }
+    public void userSeesMessageThatAccountExists() { assertTrue(haveAnAccountPage.isPageDisplayed()); }
 
     @When("^Customer leaves \"([^\"]*)\" field blank$")
     public void userLeavesFieldBlank(String arg1) { registration1Page.leaveFieldBlank(arg1); }
@@ -72,4 +72,13 @@ public class Registration1Steps extends TestBase {
 
     @Then("^Customer sees \"([^\"]*)\" checkbox's color turned red$")
     public void userSeesRed(String arg1) { assertTrue(registration1Page.isCheckboxRed(arg1)); }
+
+    @When("^Customer uses correct personal data$")
+    public void customerUsesCorrectPersonalData() { registration1Page.registerUsingCorrectCredentials(); }
+
+    @And("^Customer uses email address not found in system$")
+    public void customerUsesEmailAddressNotFoundInSystem() { assertTrue(registration1Page.isMailUnique());}
+
+    @And("^Customer provides email address that is already in SF$")
+    public void customerProvidesEmailAddressThatIsAlreadyInSF() { registration1Page.typeEmailAlreadyInSF();}
 }

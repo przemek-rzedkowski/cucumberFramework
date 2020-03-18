@@ -1,4 +1,4 @@
-#@ignore
+@ignore
 Feature: Can Customer log in
   Customer should be able to log in
 

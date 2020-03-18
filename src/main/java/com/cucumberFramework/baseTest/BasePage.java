@@ -9,5 +9,5 @@ public abstract class BasePage {
     protected WaitHelper waitHelper;
     protected WebElementHelper element;
 
-    protected abstract boolean isPageDisplayed();
+    public abstract boolean isPageDisplayed();
 }

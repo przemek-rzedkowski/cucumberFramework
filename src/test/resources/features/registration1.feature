@@ -1,17 +1,23 @@
-#@ignore
-Feature: Can Customer sign up
-  Customer should be able to register new account
+@ignore
+Feature: Can Customer sign up (part 1)
+  Customer should be able to proceed to step 2 of registration
 
   Background:
     Given Customer proceed to Register Page
     When Customer is on Registration Page
 
   #@ignore
+  Scenario: Customer is able to register with valid email only
+    And Customer provides email address that is already in SF
+    And Customer submits form
+    Then Customer sees successful verification page
+
+  @ignore
   Scenario: Customer has correct credentials
     And Customer uses correct credentials to register
     Then Customer is able to proceed to step 2 of registration
 
-  #@ignore
+  @ignore
   Scenario: Customer provides incorrect credentials
     And Customer leaves all fields blank
     Then Customer sees three error messages
@@ -23,7 +29,7 @@ Feature: Can Customer sign up
     Then Customer submits form
     And Customer sees message that account already exists
 
-  #@ignore
+  @ignore
   Scenario Outline: Customer leaves fields empty
     When Customer leaves "<element>" field blank
     Then Customer sees an error message under "<element>" field
@@ -34,7 +40,7 @@ Feature: Can Customer sign up
       |last name|
       |mail|
 
-  #@ignore
+  @ignore
   Scenario Outline: Customer does not check required checkboxes
     When Customer doesn't tick "<box>" checkbox
     Then Customer sees "<box>" checkbox's color turned red

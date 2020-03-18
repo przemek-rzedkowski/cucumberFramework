@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import com.cucumberFramework.support.WaitHelper;
 
+import java.util.stream.Stream;
+
 public class LoginPage extends BasePage {
 
     private WebDriver driver;
@@ -37,17 +39,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Demo-Version!')]")
     private WebElement demoButton;
 
-    @FindBy(xpath = "//input[@id='identifierId']")
-    private WebElement someshit;
-
-    @FindBy(xpath = "//span[contains(text(),'Dalej')]")
-    private WebElement othershit;
-
-    @FindBy(xpath = "//input[@name='password']")
-    private WebElement passwordshit;
-
-    @FindBy(xpath = "//span[contains(text(),'Dalej')]")
-    private WebElement next;
+    @FindBy(xpath = "//a[contains(@href, 'forgot')]")
+    private WebElement forgotPasswordButton;
+    
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -88,13 +82,11 @@ public class LoginPage extends BasePage {
 
     public void goToDemoFromLogin() { element.click(demoButton);}
 
-    public void userSF() {
-        driver.get("https://mail.google.com/");
-        element.type(someshit, "portal.sonnen@gmail.com");
-        element.click(othershit);
-        element.type(passwordshit, "123Sonnen");
-        element.click(next);
+    public void goToForgotPassword() { element.click(forgotPasswordButton);}
 
-        System.out.println("smoe");
+    public void enterCredentialsAs(String arg0, String arg1) {
+        element.type(loginField, arg0);
+        element.type(passwordField, arg1);
     }
+
 }

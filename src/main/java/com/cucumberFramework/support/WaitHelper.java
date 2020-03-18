@@ -17,7 +17,7 @@ public class WaitHelper {
 
 	private WebDriverWait wait;
 
-	long timeOutInSeconds = 5;
+	long timeOutInSeconds = 7;
 	
 	public WaitHelper(WebDriver driver){
 		this.driver = driver;
@@ -38,5 +38,14 @@ public class WaitHelper {
 
 	public void waitForElementToBeClickable(WebElement element) {
 		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	public void justWaitForEmail(int howLong) {
+		try {
+			System.out.println("waitin'...");
+			Thread.sleep(howLong);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

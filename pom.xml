@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.141.59</version>
         </dependency>
         <dependency>
             <groupId>net.masterthought</groupId>
@@ -80,6 +80,7 @@
     </dependencies>
 
     <build>
+        <finalName>selenium-docker</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -93,12 +94,43 @@
                 <configuration>
                     <testFailureIgnore>false </testFailureIgnore>
                     <suiteXmlFiles>
-                        <!-- src/test/resources/testSuites/testng.xml -->
-                        <suiteXmlFile>testNg.xml</suiteXmlFile>
+                        <!-- src/test/resources/testSuites/testng.xml
+                        <suiteXmlFile>testNg.xml</suiteXmlFile> -->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
-
+            <!-- some new shit
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/libs
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+             till here -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

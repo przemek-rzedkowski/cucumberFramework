@@ -8,22 +8,29 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class OnboardingConfirmationPage extends BasePage {
+public class ResetPasswordConfirmationPage extends BasePage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//h2[contains(., \"You already have an account\")]")
-    private WebElement onboardingConfirmationHeader;
+    @FindBy(xpath = "//button[.//span[@class='sw-button__label']]")
+    private WebElement proceedToLoginButton;
 
-    public OnboardingConfirmationPage(WebDriver driver) {
+    @FindBy(xpath = "//h2[contains(@class, 'sw-page-subheadline')]")
+    private WebElement successHeader;
+
+    public ResetPasswordConfirmationPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
     }
 
+    @Override
     public boolean isPageDisplayed() {
-        return element.isDisplayed(onboardingConfirmationHeader);
+        return element.isDisplayed(successHeader);
     }
 
+    public void goToLogin() {
+        element.click(proceedToLoginButton);
+    }
 }

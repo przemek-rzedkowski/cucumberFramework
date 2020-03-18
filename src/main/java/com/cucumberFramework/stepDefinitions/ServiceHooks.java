@@ -14,6 +14,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 
 
 public class ServiceHooks {
@@ -26,7 +27,11 @@ public class ServiceHooks {
 	public void initializeTest() throws IOException {
 		testBase = new TestBase();
 		testBase.startBrowser();
+		long threadId = Thread.currentThread().getId();
+		String processName = ManagementFactory.getRuntimeMXBean().getName();
+		System.out.println("Started in thread: " + threadId + ", in JVM: " + processName);
 	}
+
 
 	@After
 	public void endTest(Scenario scenario) {

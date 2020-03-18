@@ -8,26 +8,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class UserMenu extends BasePage {
+public class HaveAnAccountPage extends BasePage {
 
-    private WebDriver driver;
+    WebDriver driver;
 
-    @FindBy(xpath = "//span[contains(text(),'Log out')]")
-    private WebElement logoutButton;
+    @FindBy(xpath = "//h2[contains(., \"You already have an account\")]")
+    private WebElement onboardingConfirmationHeader;
 
-    public UserMenu(WebDriver driver) {
+    public HaveAnAccountPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
     }
 
-    public void logOut() {
-        element.click(logoutButton);
+    public boolean isPageDisplayed() {
+        return element.isDisplayed(onboardingConfirmationHeader);
     }
 
-    @Override
-    public boolean isPageDisplayed() {
-        return false;
-    }
 }

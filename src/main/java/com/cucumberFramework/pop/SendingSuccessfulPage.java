@@ -8,26 +8,24 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class UserMenu extends BasePage {
+public class SendingSuccessfulPage extends BasePage {
 
-    private WebDriver driver;
+    WebDriver driver;
 
-    @FindBy(xpath = "//span[contains(text(),'Log out')]")
-    private WebElement logoutButton;
+    @FindBy(xpath = "(//h2[contains(@class, 'sw-page-subheadline')])[1]")
+    private WebElement sendingSuccessfulHeader;
 
-    public UserMenu(WebDriver driver) {
+    public SendingSuccessfulPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
     }
 
-    public void logOut() {
-        element.click(logoutButton);
-    }
-
     @Override
     public boolean isPageDisplayed() {
-        return false;
+        waitHelper.justWaitForEmail(5000);
+        return element.isDisplayed(sendingSuccessfulHeader);
     }
+
 }
