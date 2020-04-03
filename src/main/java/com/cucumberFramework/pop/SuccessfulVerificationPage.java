@@ -15,10 +15,10 @@ public class SuccessfulVerificationPage extends BasePage {
     @FindBy(xpath = "//h2[contains(text(),'Successfully verified!')]")
     private WebElement successfulHeader;
 
-    @FindBy(xpath = "//button[contains(text(), \"You didn't receive an e-mail?\")]")
+    @FindBy(xpath = "//button[contains(text(), \"You didn't receive an email?\")]")
     private WebElement troubleshootingButton;
 
-    @FindBy(xpath = "//h2[contains(text(),\"You didn't receive an e-mail?\")]")
+    @FindBy(xpath = "//h2[contains(text(),\"You didn't receive an email?\")]")
     private WebElement troubleshootingPageHeader;
 
     public SuccessfulVerificationPage(WebDriver driver) {

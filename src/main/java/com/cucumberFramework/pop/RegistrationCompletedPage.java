@@ -1,6 +1,7 @@
 package com.cucumberFramework.pop;
 
 import com.cucumberFramework.baseTest.BasePage;
+import com.cucumberFramework.support.MailHelper;
 import com.cucumberFramework.support.WaitHelper;
 import com.cucumberFramework.support.WebElementHelper;
 import org.openqa.selenium.WebDriver;
@@ -8,17 +9,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ResetPasswordConfirmationPage extends BasePage {
+public class RegistrationCompletedPage extends BasePage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//button[.//span[@class='sw-button__label']]")
-    private WebElement proceedToLoginButton;
+    @FindBy(xpath = "//h2[contains(text(), 'Registration completed')]")
+    private WebElement completedHeader;
 
-    @FindBy(xpath = "//h2[contains(@class, 'sw-page-subheadline')]")
-    private WebElement successHeader;
+    @FindBy(xpath = "//span[@class='sw-button__label']")
+    private WebElement loginButton;
 
-    public ResetPasswordConfirmationPage(WebDriver driver) {
+    public RegistrationCompletedPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
@@ -27,11 +28,14 @@ public class ResetPasswordConfirmationPage extends BasePage {
 
     @Override
     public boolean isPageDisplayed() {
-        return element.isDisplayed(successHeader);
+        return element.isDisplayed(completedHeader);
     }
 
-    public void goToLogin() {
-        waitHelper.justWaitForIt(2000);
-        element.click(proceedToLoginButton);
+    public void logIn() {
+        element.click(loginButton);
+    }
+
+    public void providePasswords(String arg0) {
+
     }
 }

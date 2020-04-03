@@ -1,6 +1,7 @@
 package com.cucumberFramework.baseTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -39,6 +40,7 @@ public class TestBase {
 		driver.get("https://my.dev.sonnen.de/");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
+		//driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 
 		return driver;
 	}
@@ -56,6 +58,7 @@ public class TestBase {
 			chromeOptions.addArguments("--disable-dev-shm-usage"); //https://stackoverflow.com/a/50725918/1689770
 			chromeOptions.addArguments("--disable-browser-side-navigation"); //https://stackoverflow.com/a/49123152/1689770
 			chromeOptions.addArguments("--disable-gpu");
+			chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE); //workaround, probably may cause faulty results
 			driver = new ChromeDriver(chromeOptions);
 		} else if (properties.getProperty("config.browser").equals("FIREFOX")) {
 			WebDriverManager.firefoxdriver().setup();
@@ -65,5 +68,10 @@ public class TestBase {
 			firefoxOptions.addArguments("start-maximized");
 			driver = new FirefoxDriver(firefoxOptions);
 		}
+	}
+
+	public void getAddress(String url) {
+		driver.get(url);
+		//System.out.println("some");
 	}
 }

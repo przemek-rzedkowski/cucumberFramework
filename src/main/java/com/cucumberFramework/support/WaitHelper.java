@@ -40,7 +40,7 @@ public class WaitHelper {
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
-	public void justWaitForEmail(int howLong) {
+	public void justWaitForIt(int howLong) {
 		try {
 			System.out.println("waitin'...");
 			Thread.sleep(howLong);

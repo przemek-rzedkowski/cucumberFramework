@@ -7,7 +7,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.it.Ma;
 
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
@@ -20,7 +19,15 @@ public class ResetPasswordSteps extends TestBase {
     WentWrongPage wentWrongPage = new WentWrongPage(driver);
     ResetPasswordPage resetPasswordPage = new ResetPasswordPage(driver);
     ResetPasswordConfirmationPage resetPasswordConfirmationPage = new ResetPasswordConfirmationPage(driver);
-    MailPage mailPage = new MailPage(driver);
+    MailPage mailPage;
+
+    {
+        try {
+            mailPage = new MailPage(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @When("^Customer selects that he forgot the password$")
     public void customerSelectsThatHeForgotThePassword() { loginPage.goToForgotPassword();}
@@ -38,16 +45,10 @@ public class ResetPasswordSteps extends TestBase {
     public void customerSeesSendingSuccessfulPage() { assertTrue(sendingSuccessfulPage.isPageDisplayed());}
 
     @And("^Customer has an reset password email in his inbox$")
-    public void customerHasAnResetPasswordEmailInHisInbox() {
-        mailPage.goToInbox();
-        assertTrue(mailPage.isMailDelivered());
-    }
-
-    @And("^Customer clicks on reset password link$")
-    public void customerClicksOnResetPasswordLink() { mailPage.resetPassword();}
+    public void customerHasAnResetPasswordEmailInHisInbox() { assertTrue(mailPage.isMessageDelivered()); }
 
     @Then("^Customer sees new tab opened with something went wrong page$")
-    public void customerSeesNewTabOpenedWithSomethingWentWrongPage() { }
+    public void customerSeesNewTabOpenedWithSomethingWentWrongPage() { assertTrue(wentWrongPage.isPageDisplayed()); }
 
     @When("^Customer selects to go to login page$")
     public void customerSelectsToGoToLoginPage() { wentWrongPage.goToLogin(); }
@@ -100,9 +101,6 @@ public class ResetPasswordSteps extends TestBase {
     @When("^Customer provides credentials as \"([^\"]*)\" and \"([^\"]*)\"$")
     public void customerProvidesCredentialsAsAnd(String arg0, String arg1) { loginPage.enterCredentialsAs(arg0, arg1);}
 
-    @When("^Customer opens email$")
-    public void customerOpensEmail() { mailPage.goIntoEmail();}
-
     @When("^Customer provides password as \"([^\"]*)\" to new password field$")
     public void customerProvidesPasswordAsToNewPasswordField(String arg0) { resetPasswordPage.enterNewPassword(arg0);}
 
@@ -112,12 +110,12 @@ public class ResetPasswordSteps extends TestBase {
     @Then("^Customer sees error stating that password don't match$")
     public void customerSeesErrorStatingThatPasswordDonTMatch() { assertTrue(resetPasswordPage.isNotMatchingErrorDisplayed());}
 
-    @When("^Customer opens an old email$")
-    public void customerOpensAnOldEmail() { mailPage.goIntoOldEmail();}
+    @When("^Customer uses token from reset password email$")
+    public void customerUsesTokenFromEmail() { super.getAddress(mailPage.extractResetPasswordToken()); }
 
-    @Given("^Customer has an old reset password email in his inbox$")
-    public void customerHasAnOldResetPasswordEmailInHisInbox() {
-        mailPage.goToInbox();
-        assertTrue(mailPage.isOldMailDelivered());
-    }
+    @And("^Customer cleans inbox$")
+    public void customerCleansInbox() { mailPage.deleteAllThreads(); }
+
+    @When("^Customer uses broken token from email to reset password$")
+    public void customerUsesBrokenTokenFromEmail() { super.getAddress(mailPage.breakResetPasswordToken()); }
 }

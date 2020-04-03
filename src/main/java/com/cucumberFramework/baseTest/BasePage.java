@@ -10,4 +10,5 @@ public abstract class BasePage {
     protected WebElementHelper element;
 
     public abstract boolean isPageDisplayed();
+
 }

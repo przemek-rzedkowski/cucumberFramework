@@ -1,8 +1,11 @@
 package com.cucumberFramework.support;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class WebElementHelper {
 
@@ -81,5 +84,11 @@ public class WebElementHelper {
             waitHelper.waitForElement(element);
             element.click();
         }
+    }
+
+    public boolean isEnabledWithJS(WebElement element) {
+        JavascriptExecutor js=(JavascriptExecutor)driver;
+        List<WebElement> elements = (List<WebElement>) js.executeScript("return jQuery.find(':disabled')");
+        return elements.size() > 0;
     }
 }

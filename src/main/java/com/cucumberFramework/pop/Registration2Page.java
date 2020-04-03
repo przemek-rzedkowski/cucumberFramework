@@ -12,7 +12,7 @@ public class Registration2Page extends BasePage {
 
     WebDriver driver;
 
-    @FindBy(xpath = "//input[@id='battery_serial_number']")
+    @FindBy(xpath = "//input[@id='batterySerialNumber']")
     private WebElement serialNumberField;
 
     @FindBy(xpath = "//button[contains(text(),'Go back')]")
@@ -27,7 +27,7 @@ public class Registration2Page extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'Where to find Serial number?')]")
     private WebElement serialNumberLocation;
 
-    @FindBy(xpath = "//input[@id='battery_password']")
+    @FindBy(xpath = "//input[@id='batteryPassword']")
     private WebElement legitimationPasswordField;
 
     @FindBy(xpath = "//button[(contains(@disabled, '')) and contains(@type, 'submit')]")
@@ -39,10 +39,10 @@ public class Registration2Page extends BasePage {
     @FindBy(xpath = "//button[contains(text(),'Where to find customer number?')]")
     private WebElement customerNumberLocation;
 
-    @FindBy(xpath = "//input[@id='customer_number']")
+    @FindBy(xpath = "//input[@id='customerNumber']")
     private WebElement customerNumberField;
 
-    @FindBy(xpath = "//input[@id='zip_code']")
+    @FindBy(xpath = "//input[@id='zipCode']")
     private WebElement zipCodeField;
 
     @FindBy(xpath = "//p[contains(text(),\"You couldn't find your credentials?\")]")
@@ -87,8 +87,8 @@ public class Registration2Page extends BasePage {
 
     public void useCorrectCredentials(String arg0) {
         if (arg0.equals("serial number")) {
-            element.type(serialNumberField, "66040");
-            element.type(legitimationPasswordField, "yufethekaV");
+            element.type(serialNumberField, "32290");
+            element.type(legitimationPasswordField, "3dRuPrike6");
         } else if(arg0.equals("customer number")) {
             element.type(customerNumberField, "DE20104101");
             element.type(zipCodeField, "55555");
@@ -113,7 +113,7 @@ public class Registration2Page extends BasePage {
     }
 
     public boolean isSubmitButtonActive() {
-        System.out.println(element.isClickable(verifyButton));
+        //System.out.println(element.isClickable(verifyButton));
         return element.isClickable(verifyButton);
     }
 
@@ -164,8 +164,8 @@ public class Registration2Page extends BasePage {
     }
 
     public void switchToAnotherTab(String arg0) {
-        if (arg0.equals("serial number")){
-           //do nothing, you are no valid tab
+        if (arg0.equals("serial number")) {
+           //do nothing, you are on valid tab
         } else if (arg0.equals("customer number")) {
             element.click(customerNumberTab);
         }
@@ -199,10 +199,6 @@ public class Registration2Page extends BasePage {
             return element.isDisplayed(customerNumberField);
         }
         return false;
-    }
-
-    public boolean isEmailDelivered() {
-        return true;
     }
 
 }

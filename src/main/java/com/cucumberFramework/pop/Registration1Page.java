@@ -1,6 +1,7 @@
 package com.cucumberFramework.pop;
 
 import com.cucumberFramework.baseTest.BasePage;
+import com.cucumberFramework.support.MailHelper;
 import com.cucumberFramework.support.WaitHelper;
 import com.cucumberFramework.support.WebElementHelper;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class Registration1Page extends BasePage {
     
     WebDriver driver;
+    MailHelper mailHelper;
 
     @FindBy(xpath = "//input[@id='firstName']")
     private WebElement nameField;
@@ -33,13 +36,13 @@ public class Registration1Page extends BasePage {
     @FindBy(xpath = "//div[.//span[contains(.,'terms')]]/preceding-sibling::span")
     private WebElement tncBox;
 
-    @FindBy(xpath = "//div[./input[@name = \"terms_accepted\"]]")
+    @FindBy(xpath = "//div[./input[@name = \"termsAccepted\"]]")
     private WebElement tncBoxError;
 
     @FindBy(xpath = "//div[.//span[contains(.,'policy')]]/preceding-sibling::span")
     private WebElement ppBox;
 
-    @FindBy(xpath = "//div[./input[@name = \"privacy_accepted\"]]")
+    @FindBy(xpath = "//div[./input[@name = \"privacyAccepted\"]]")
     public  WebElement ppBoxError;
 
     @FindBy(xpath = "//span[contains(.,'Next')]")
@@ -50,6 +53,11 @@ public class Registration1Page extends BasePage {
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
+        try {
+            mailHelper = new MailHelper(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isPageDisplayed() {
@@ -159,8 +167,6 @@ public class Registration1Page extends BasePage {
     }
 
     public boolean areFieldsFilled() {
-        element.click(ppBox);
-        element.click(tncBox);
         if (nameField.getAttribute("value").equals("Dante") &&
             lastNameField.getAttribute("value").equals("Alighieri") &&
             mailField.getAttribute("value").equals("some.mail@gmail.com") &&
@@ -174,8 +180,15 @@ public class Registration1Page extends BasePage {
     public void typeEmailAlreadyInSF() {
         element.type(nameField, "Marcin");
         element.type(lastNameField, "Szewc");
-        element.type(mailField, "test.sonnen@gmail.com");
+        element.type(mailField, "alighieri.dante1508+2@gmail.com");
         element.click(tncBox);
         element.click(ppBox);
+    }
+
+    public void changePersonalData(String arg0) {
+        if (arg0.equals("serial number")) {
+            element.clearFields(mailField);
+            element.type(mailField, "alighieri.dante1508+3@gmail.com");
+        }
     }
 }

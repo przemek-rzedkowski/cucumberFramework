@@ -1,6 +1,7 @@
 @ignore
 Feature: Customer can reset ones password
   Customer should be able reset password for his account
+  # alighieri.dante1508@gmail.com | Register 2 DO NOT REMOVE
 
   Background:
     Given Customer is on Landing page
@@ -16,8 +17,7 @@ Feature: Customer can reset ones password
   #@ignore
   Scenario: Customer is unable to reset password due to faulty input
     Given Customer has an reset password email in his inbox
-    When Customer opens email
-    And Customer clicks on reset password link
+    When Customer uses token from reset password email
     Then Customer sees new tab opened with reset password page
     When Customer leaves both fields blank
     Then Customer cannot submit reset password form
@@ -32,13 +32,13 @@ Feature: Customer can reset ones password
     And Customer provides password as "123Sonnen?" to confirm password field
     Then Customer sees error stating that password don't match
     And Customer cannot submit reset password form
+    And Customer cleans inbox
 
 
   #@ignore
   Scenario: Customer is able to reset password
     Given Customer has an reset password email in his inbox
-    When Customer opens email
-    And Customer clicks on reset password link
+    When Customer uses token from reset password email
     Then Customer sees new tab opened with reset password page
     When Customer provides password as "123Sonnen!" to reset password fields
     Then Customer sees all three restrictions fulfilled
@@ -51,4 +51,13 @@ Feature: Customer can reset ones password
     When Customer provides credentials as "alighieri.dante1508@gmail.com" and "123Sonnen!"
     And Customer clicks on login button
     Then Customer should see PV System Name
+    And Customer cleans inbox
 
+  #@ignore
+  Scenario: Customer is unable to use broken token to ones reset password
+    Given Customer has an reset password email in his inbox
+    When Customer uses broken token from email to reset password
+    Then Customer sees new tab opened with something went wrong page
+    When Customer selects to go to login page
+    Then Customer should see Email input
+    And Customer cleans inbox

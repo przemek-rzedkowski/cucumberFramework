@@ -54,9 +54,7 @@ public class Registration1Steps extends TestBase {
     }
 
     @Then("^Customer submits form$")
-    public void userSubmitsForm() {
-        registration1Page.userSubmitsForm();
-    }
+    public void userSubmitsForm() { registration1Page.userSubmitsForm(); }
 
     @And("^Customer sees message that account already exists$")
     public void userSeesMessageThatAccountExists() { assertTrue(haveAnAccountPage.isPageDisplayed()); }

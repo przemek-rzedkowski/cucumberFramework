@@ -10,22 +10,24 @@ Feature: Customer can sign up (part 2)
     And Customer uses email address not found in system
     Then Customer is able to proceed to step 2 of registration
 
-  @ignore
-  Scenario Outline: Customer is able to register
-    When Customer switches to "<credentials>" tab
+    # alighieri.dante1508+3@gmail.com ----- for serial number
+    # alighieri.dante1508+1@gmail.com | Register 1 DO NOT REMOVE ------- for customer number
+  #@ignore
+  Scenario Outline: Customer is able to send activation mail using credentials
+    Then Customer switches to "<credentials>" tab
     And Customer uses correct "<credentials>" for step two
     And Customer submits registration form
     Then Customer sees successful verification page
-    And Customer receives confirmation email
     When Customer selects that he doesn't receive an email
     Then Customer sees troubleshooting message
+    And Customer receives confirmation email using "<credentials>"
     Examples:
     |credentials|
-    |customer number|
     |serial number|
+    |customer number|
 
-
-  @ignore
+    
+  #@ignore
   Scenario Outline: Customer is unable to register with incorrect serial number or legitimation password
     When Customer uses incorrect serial number and legitimation password
     And Customer submits registration form
@@ -39,7 +41,7 @@ Feature: Customer can sign up (part 2)
     |legitimation password|
 
 
-  @ignore
+  #@ignore
   Scenario Outline: Customer is unable to register with incorrect zip code or customer number
     When Customer switches to second way of registration
     And Customer uses incorrect zip code and customer number
@@ -53,6 +55,7 @@ Feature: Customer can sign up (part 2)
     |zip code|
     |customer number|
 
+  #checkboxes are filled also - should they be?
   @ignore
   Scenario: Customer is able go back to first step of registration
     When Customer goes back to first step of registration
@@ -63,8 +66,9 @@ Feature: Customer can sign up (part 2)
     When Customer goes to login from second step of registration
     Then Customer should see Email input
 
+  #bugged serial number clue
   @ignore
-  Scenario Outline: Customer is able to find location clues
+  Scenario Outline: Customer is able to display location clues
     When Customer switches to "<value>" tab
     And Customer wants to find "<value>"
     Then Customer sees clues about finding "<value>"
@@ -72,5 +76,6 @@ Feature: Customer can sign up (part 2)
     Then Customer sees "<value>" tab
     Examples:
     |value|
-    |serial number|
     |customer number|
+    |serial number|
+
