@@ -1,7 +1,7 @@
 @ignore
 Feature: Customer can reset ones password
   Customer should be able reset password for his account
-  # alighieri.dante1508@gmail.com | Register 2 DO NOT REMOVE
+  # alighieri.dante1508+1@gmail.com | Register 1 DO NOT REMOVE
 
   Background:
     Given Customer is on Landing page

@@ -66,23 +66,19 @@ public class LoginSteps extends TestBase {
     public void userIsOnDashboard() {
         landingPage.proceedToLoginPage();
         loginPage.enterUserName("max-mustermann@example.com");
-        loginPage.enterPassword("123Sonnen");
+        loginPage.enterPassword("123Sonnen!");
         loginPage.clickLoginButton();
         assertTrue(dashboardPage.isPageDisplayed());
     }
 
     @When("^Customer goes to User Menu$")
-    public void userGoesToUserMenu() {
-        loginPage.openUserMenu();
-    }
+    public void userGoesToUserMenu() { dashboardPage.openUserMenu(); }
 
     @When("^Customer proceed to Demo mode from Login Page$")
     public void userGoesToDemoFromLogin() { loginPage.goToDemoFromLogin();}
 
     @And("^Customer logs out$")
-    public void userLogsOut() {
-        userMenu.logOut();
-    }
+    public void userLogsOut() { userMenu.logOut(); }
 
     @Given("^Customer log in SalesForce$")
     public void userLogsInSF() {

@@ -15,13 +15,13 @@ import com.cucumberFramework.support.WaitHelper;
 
 public class DashboardPage extends BasePage {
 
-    private WebDriver driver;
-
     @FindBy(xpath = "//h2[contains(text(),'PV System')]")
     private WebElement PVSystemName;
 
+    @FindBy(xpath = "(//div[@class = 'c-icon-badge'][.//p[@class = 'c-icon-badge__label']])[2]")
+    private WebElement showUserMenuButton;
+
     public DashboardPage(WebDriver driver) {
-        this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
@@ -30,4 +30,6 @@ public class DashboardPage extends BasePage {
     public boolean isPageDisplayed() {
         return element.isDisplayed(PVSystemName);
     }
+
+    public void openUserMenu() { element.click(showUserMenuButton); }
 }

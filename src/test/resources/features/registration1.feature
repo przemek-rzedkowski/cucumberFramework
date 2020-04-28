@@ -6,7 +6,7 @@ Feature: Can Customer sign up (part 1)
     Given Customer proceed to Register Page
     When Customer is on Registration Page
 
-  # alighieri.dante1508+2@gmail.com | Register 3 DO NOT REMOVE
+  # alighieri.dante1508+2@gmail.com | Register 2 DO NOT REMOVE
   @ignore
   Scenario: Customer is able to register with valid email only
     And Customer provides email address that is already in SF

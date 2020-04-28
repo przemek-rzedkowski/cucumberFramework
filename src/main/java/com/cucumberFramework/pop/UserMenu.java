@@ -15,6 +15,9 @@ public class UserMenu extends BasePage {
     @FindBy(xpath = "//span[contains(text(),'Log out')]")
     private WebElement logoutButton;
 
+    @FindBy(xpath = "//span[contains(text(),'My Account')]")
+    private WebElement myAccountButton;
+
     public UserMenu(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -22,12 +25,14 @@ public class UserMenu extends BasePage {
         element = new WebElementHelper(waitHelper, driver);
     }
 
-    public void logOut() {
-        element.click(logoutButton);
-    }
-
     @Override
     public boolean isPageDisplayed() {
         return false;
     }
+
+    public void logOut() {
+        element.click(logoutButton);
+    }
+
+    public void switchToMyAccountPage() { element.click(myAccountButton); }
 }

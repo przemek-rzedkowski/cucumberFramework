@@ -11,7 +11,7 @@ Feature: Customer can sign up (part 2)
     Then Customer is able to proceed to step 2 of registration
 
     # alighieri.dante1508+3@gmail.com ----- for serial number
-    # alighieri.dante1508+1@gmail.com | Register 1 DO NOT REMOVE ------- for customer number
+    # alighieri.dante1508@gmail.com | Register DO NOT REMOVE ------- for customer number
   #@ignore
   Scenario Outline: Customer is able to send activation mail using credentials
     Then Customer switches to "<credentials>" tab
@@ -26,7 +26,7 @@ Feature: Customer can sign up (part 2)
     |serial number|
     |customer number|
 
-    
+
   #@ignore
   Scenario Outline: Customer is unable to register with incorrect serial number or legitimation password
     When Customer uses incorrect serial number and legitimation password

@@ -6,17 +6,17 @@ Feature: Can Customer log in
   Scenario: test
     Given Customer log in SalesForce
 
-  #@ignore
+  @ignore
   Scenario: Customer has correct credentials
     Given Customer is on Landing page
     When Customer proceed to Login Page
     Then Customer should see Email input
     When Customer enters username as "max-mustermann@example.com"
-    And Customer enters password as "123Sonnen"
+    And Customer enters password as "123Sonnen!"
     And Customer clicks on login button
     Then Customer should see PV System Name
 
-  #@ignore
+  @ignore
   Scenario: Customer has incorrect credentials
     Given Customer is on Landing page
     When Customer proceed to Login Page
@@ -26,7 +26,7 @@ Feature: Can Customer log in
     And Customer clicks on login button
     Then Customer is unable to log in
 
-  #@ignore
+  @ignore
   Scenario: Customer can see his password
     Given Customer is on Landing page
     Given Customer proceed to Login Page

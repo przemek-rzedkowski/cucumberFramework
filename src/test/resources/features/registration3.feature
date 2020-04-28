@@ -1,8 +1,8 @@
-#@ignore
+@ignore
 Feature: Customer can finalize sign up process and use repeatedly same credentials
   Customer should be able to log in after successful registration
 
-  # alighieri.dante1508+1@gmail.com | Register 1 DO NOT REMOVE
+  # alighieri.dante1508@gmail.com | Register 3 DO NOT REMOVE
   #@ignore
   Scenario: Customer is unable to set up password for new account due to lack of input
     Given Customer has an activation email in his inbox

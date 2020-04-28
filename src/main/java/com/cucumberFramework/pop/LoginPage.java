@@ -13,8 +13,6 @@ import java.util.stream.Stream;
 
 public class LoginPage extends BasePage {
 
-    private WebDriver driver;
-
     @FindBy(xpath = "//input[@id = 'user_email']")
     private WebElement loginField;
 
@@ -30,9 +28,6 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//span[@class = 'eye visible']")
     private WebElement showPasswordButtonVisible;
 
-    @FindBy(xpath = "(//div[@class = 'c-icon-badge'][.//p[@class = 'c-icon-badge__label']])[2]")
-    private WebElement showUserMenuButton;
-
     @FindBy(xpath = "//div[contains(text(), \"Invalid E-mail or password\")]")
     private WebElement invalidCredentialsMessage;
 
@@ -44,7 +39,6 @@ public class LoginPage extends BasePage {
     
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
@@ -74,10 +68,6 @@ public class LoginPage extends BasePage {
 
     public boolean canUserSeePassword() {
         return passwordField.getAttribute("value").equals("passwd");
-    }
-
-    public void openUserMenu() {
-        element.click(showUserMenuButton);
     }
 
     public void goToDemoFromLogin() { element.click(demoButton);}

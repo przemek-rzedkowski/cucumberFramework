@@ -90,7 +90,7 @@ public class Registration2Page extends BasePage {
             element.type(serialNumberField, "32290");
             element.type(legitimationPasswordField, "3dRuPrike6");
         } else if(arg0.equals("customer number")) {
-            element.type(customerNumberField, "DE20104101");
+            element.type(customerNumberField, "DE20012896");
             element.type(zipCodeField, "55555");
         }
     }
