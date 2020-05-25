@@ -48,7 +48,7 @@ Feature: Customer can reset ones password
     Then Customer sees reset password confirmation page
     When Customer selects to go proceed to login page
     Then Customer should see Email input
-    When Customer provides credentials as "alighieri.dante1508@gmail.com" and "123Sonnen!"
+    When Customer provides credentials as "alighieri.dante1508+1@gmail.com" and "123Sonnen!"
     And Customer clicks on login button
     Then Customer should see PV System Name
     And Customer cleans inbox

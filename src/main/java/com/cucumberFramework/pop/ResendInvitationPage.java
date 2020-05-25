@@ -29,7 +29,7 @@ public class ResendInvitationPage extends BasePage {
     public boolean isPageDisplayed() { return element.isDisplayed(mailField); }
 
     public void insertMail() {
-        element.type(mailField, "alighieri.dante1508+1@gmail.com");
+        element.type(mailField, "alighieri.dante1508@gmail.com");
     }
 
     public void submitForm() {

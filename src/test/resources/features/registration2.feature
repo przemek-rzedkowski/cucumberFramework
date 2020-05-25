@@ -1,4 +1,4 @@
-@ignore
+#@ignore
 Feature: Customer can sign up (part 2)
   Customer should be able to successfully register new account
 
@@ -7,11 +7,10 @@ Feature: Customer can sign up (part 2)
     When Customer proceed to Register Page
     Then Customer is on Registration Page
     When Customer uses correct personal data
-    And Customer uses email address not found in system
     Then Customer is able to proceed to step 2 of registration
 
-    # alighieri.dante1508+3@gmail.com ----- for serial number
-    # alighieri.dante1508@gmail.com | Register DO NOT REMOVE ------- for customer number
+    # alighieri.dante1508+3@gmail.com | Register 3 DO NOT REMOVE ------- for serial number
+    # alighieri.dante1508@gmail.com   | Register DO NOT REMOVE   ------- for customer number
   #@ignore
   Scenario Outline: Customer is able to send activation mail using credentials
     Then Customer switches to "<credentials>" tab
@@ -55,13 +54,13 @@ Feature: Customer can sign up (part 2)
     |zip code|
     |customer number|
 
-  #checkboxes are filled also - should they be?
-  @ignore
+
+  #@ignore
   Scenario: Customer is able go back to first step of registration
     When Customer goes back to first step of registration
     Then Customer sees first step form prefilled with his data
 
-  @ignore
+  #@ignore
   Scenario: Customer is able to go directly to login page
     When Customer goes to login from second step of registration
     Then Customer should see Email input

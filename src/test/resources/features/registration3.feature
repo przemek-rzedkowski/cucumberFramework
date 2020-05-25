@@ -1,8 +1,8 @@
-@ignore
+#@ignore
 Feature: Customer can finalize sign up process and use repeatedly same credentials
   Customer should be able to log in after successful registration
 
-  # alighieri.dante1508@gmail.com | Register 3 DO NOT REMOVE
+  # alighieri.dante1508@gmail.com | Register DO NOT REMOVE
   #@ignore
   Scenario: Customer is unable to set up password for new account due to lack of input
     Given Customer has an activation email in his inbox
@@ -10,15 +10,17 @@ Feature: Customer can finalize sign up process and use repeatedly same credentia
     Then Customer sees new tab opened with setting password page
     When Customer leaves both fields blank
     Then Customer cannot submit password form
-    When Customer leaves new password field blank
-    Then Customer cannot submit password form
-    And Customer sees error message under new password field
-    When Customer leaves confirm password field blank
-    Then Customer cannot submit password form
-    And Customer sees error message under confirm password field
+
+    #no "red" errors during registration
+    #When Customer leaves new password field blank
+    #Then Customer cannot submit password form
+    #And Customer sees error message under new password field
+    #When Customer leaves confirm password field blank
+    #Then Customer cannot submit password form
+    #And Customer sees error message under confirm password field
 
 
-  @ignore
+  #@ignore
   Scenario: Customer is unable to set up password for new account due to faulty input
     Given Customer has an activation email in his inbox
     When Customer uses token from activation email
@@ -35,7 +37,7 @@ Feature: Customer can finalize sign up process and use repeatedly same credentia
     And Customer sees both checkboxes' names in red
 
 
-  @ignore
+  #@ignore
   Scenario: Customer is unable to set up password for new account due to broken token
     Given Customer has an activation email in his inbox
     When Customer uses broken token from activation email
@@ -44,7 +46,7 @@ Feature: Customer can finalize sign up process and use repeatedly same credentia
     And Customer submits resend invitation form
     Then Customer has a new activation email in his inbox
 
-  @ignore
+  #@ignore
   Scenario: Customer is able to set up password for new account
     Given Customer has an activation email in his inbox
     When Customer uses token from activation email
@@ -58,24 +60,12 @@ Feature: Customer can finalize sign up process and use repeatedly same credentia
     When Customer selects to log in immediately
     Then Customer should see Email input
 
-  @ignore
+  #@ignore
   Scenario: Customer is able to sign in to newly created account
     Given Customer is on Landing page
     When Customer proceed to Login Page
     Then Customer should see Email input
-    When Customer enters username as "alighieri.dante1508+1@gmail.com"
+    When Customer enters username as "alighieri.dante1508@gmail.com"
     And Customer enters password as "123Sonnen!"
     And Customer clicks on login button
     Then Customer should see PV System Name
-
-  @ignore
-  Scenario: Customer is able to clear SF DB for next test run
-    Given Customer is logged into SalesForce
-    When Customer deletes user created via email registration
-    Then Customer sees no user attached to "Register 2 DO NOT REMOVE" account
-    When Customer deletes user created via customer number
-    Then Customer sees no user attached to "Register 1 DO NOT REMOVE" account
-    When Customer deletes "Dante Alighieri" account
-    And Customer reattaches test battery to "+++ ASSET COLLECT ACCOUNT + DO NOT RENAME +++" account
-    Then Customer see test battery as ready to be attached again
-    #also remove mails from inbox

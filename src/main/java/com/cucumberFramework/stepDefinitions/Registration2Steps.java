@@ -83,12 +83,7 @@ public class Registration2Steps extends TestBase {
     public void customerGoesToLoginFromSecondStepOfRegistration() { registration2Page.goBackToLogin();}
 
     @When("^Customer switches to \"([^\"]*)\" tab$")
-    public void customerSwitchesToTab(String arg0) {
-        registration2Page.goBackToFirstStep();
-        registration1Page.changePersonalData(arg0);
-        registration1Page.userSubmitsForm();
-        registration2Page.switchToAnotherTab(arg0);
-    }
+    public void customerSwitchesToTab(String arg0) { registration2Page.switchToAnotherTab(arg0); }
 
     @And("^Customer wants to find \"([^\"]*)\"$")
     public void customerWantsToFind(String arg0) { registration2Page.clickOnHint(arg0);}

@@ -81,14 +81,12 @@ public class Registration2Page extends BasePage {
         element = new WebElementHelper(waitHelper, driver);
     }
 
-    public boolean isPageDisplayed() {
-        return element.isDisplayed(serialNumberField);
-    }
+    public boolean isPageDisplayed() { return element.isDisplayed(serialNumberField); }
 
     public void useCorrectCredentials(String arg0) {
         if (arg0.equals("serial number")) {
-            element.type(serialNumberField, "32290");
-            element.type(legitimationPasswordField, "3dRuPrike6");
+            element.type(serialNumberField, "58029");
+            element.type(legitimationPasswordField, "8aptErgiM2");
         } else if(arg0.equals("customer number")) {
             element.type(customerNumberField, "DE20012896");
             element.type(zipCodeField, "55555");
@@ -155,9 +153,7 @@ public class Registration2Page extends BasePage {
         element.type(customerNumberField, "!@#$%^&*");
     }
 
-    public void goBackToFirstStep() {
-        element.click(goBackButton);
-    }
+    public void goBackToFirstStep() { element.click(goBackButton); }
 
     public void goBackToLogin() {
         element.click(goToLoginButton);

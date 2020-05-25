@@ -60,6 +60,7 @@ public class WebElementHelper {
     }
 
     public boolean isDisplayed(WebElement element) {
+        waitHelper.waitForPageLoaded(driver);
         waitHelper.waitForElement(element);
         return element.isDisplayed();
     }

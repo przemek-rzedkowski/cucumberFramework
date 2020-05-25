@@ -7,7 +7,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.AssertJUnit.*;
 
 public class Registration3Steps extends TestBase {
 
@@ -85,31 +85,19 @@ public class Registration3Steps extends TestBase {
     public void customerInsertsHisEmailAddressToResend() { resendInvitationPage.insertMail(); }
 
     @And("^Customer submits resend invitation form$")
-    public void customerSubmitsResendInvitationForm() { resendInvitationPage.submitForm(); }
+    public void customerSubmitsResendInvitationForm() {
+        mailPage.deleteAllThreads();
+        resendInvitationPage.submitForm(); }
 
     @Given("^Customer is logged into SalesForce$")
     public void customerIsLoggedIntoSalesForce() {
-        //some action to log in
+        salesForcePage.logIn();
+        salesForcePage.confirmLogin(mailPage.extractSFCode());
         assertTrue(salesForcePage.isPageDisplayed());
     }
 
-    @When("^Customer deletes user created via email registration$")
-    public void customerDeletesUserCreatedViaEmailRegistration() { }
-
-    @Then("^Customer sees no user attached to \"([^\"]*)\" account$")
-    public void customerSeesNoUserAttachedToAccount(String arg0) { }
-
-    @When("^Customer deletes user created via customer number$")
-    public void customerDeletesUserCreatedViaCustomerNumber() { }
-
-    @When("^Customer deletes \"([^\"]*)\" account$")
-    public void customerDeletesAccount(String arg0) { }
-
-    @And("^Customer reattaches test battery to \"([^\"]*)\" account$")
-    public void customerReattachesTestBatteryToAccount(String arg0) { }
-
-    @Then("^Customer see test battery as ready to be attached again$")
-    public void customerSeeTestBatteryAsReadyToBeAttachedAgain() { }
+    @When("^Customer deletes users attached to test accounts$")
+    public void customerDeletesAccount() { assertTrue(salesForcePage.deleteUsers()); }
 
     @When("^Customer uses token from activation email$")
     public void customerUsesTokenFromActivationEmail() { super.getAddress(mailPage.extractActivationToken()); }
@@ -118,9 +106,12 @@ public class Registration3Steps extends TestBase {
     public void customerUsesBrokenTokenFromActivationEmail() { super.getAddress(mailPage.breakActivationToken()); }
 
     @Then("^Customer has a new activation email in his inbox$")
-    public void customerHasANewActivationEmailInHisInbox() {
-        assertTrue(mailPage.isMessageDelivered());
-        mailPage.deleteAllThreads();
-    }
+    public void customerHasANewActivationEmailInHisInbox() { assertTrue(mailPage.isMessageDelivered()); }
+
+    @When("^Customer deletes mails from inbox$")
+    public void customerDeletesMailsFromInbox() { mailPage.deleteAllThreads(); }
+
+    @Then("^Customer sees no mails in inbox$")
+    public void customerSeesNoMailsInInbox() { assertEquals(0, mailPage.listMatchingMessages(""));}
 }
 

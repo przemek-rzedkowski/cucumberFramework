@@ -1,4 +1,4 @@
-@ignore
+#@ignore
 Feature: Can Customer sign up (part 1)
   Customer should be able to proceed to step 2 of registration
 
@@ -6,14 +6,23 @@ Feature: Can Customer sign up (part 1)
     Given Customer proceed to Register Page
     When Customer is on Registration Page
 
+  #@ignore
+  Scenario: Customer is able to clear SF DB and mail inbox for next test run
+    Given Customer is logged into SalesForce
+    When Customer deletes users attached to test accounts
+    When Customer deletes mails from inbox
+    Then Customer sees no mails in inbox
+
   # alighieri.dante1508+2@gmail.com | Register 2 DO NOT REMOVE
-  @ignore
+  #@ignore
   Scenario: Customer is able to register with valid email only
     And Customer provides email address that is already in SF
     And Customer submits form
     Then Customer sees successful verification page
+    And Customer has a new activation email in his inbox
+    Then Customer deletes mails from inbox
 
-  @ignore
+  #@ignore
   Scenario: Customer has correct credentials
     And Customer uses correct credentials to register
     Then Customer is able to proceed to step 2 of registration
@@ -32,7 +41,7 @@ Feature: Can Customer sign up (part 1)
     And Customer sees message that account already exists
 
   #same as above
-  #@ignore
+  @ignore
   Scenario Outline: Customer leaves fields empty
     When Customer leaves "<element>" field blank
     Then Customer sees an error message under "<element>" field
@@ -44,7 +53,7 @@ Feature: Can Customer sign up (part 1)
       |mail|
 
   #same
-  #@ignore
+  @ignore
   Scenario Outline: Customer does not check required checkboxes
     When Customer doesn't tick "<box>" checkbox
     Then Customer sees "<box>" checkbox's color turned red

@@ -6,7 +6,7 @@ Feature: Can Customer log in
   Scenario: test
     Given Customer log in SalesForce
 
-  @ignore
+  #@ignore
   Scenario: Customer has correct credentials
     Given Customer is on Landing page
     When Customer proceed to Login Page
@@ -35,7 +35,7 @@ Feature: Can Customer log in
     And Customer enables display password feature
     Then Customer can see the password
 
-  #@ignore
+  @ignore
   Scenario: Customer is able to log out
     Given Customer is on Dashboard page
     When Customer goes to User Menu

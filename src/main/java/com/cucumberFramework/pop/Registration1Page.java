@@ -169,9 +169,7 @@ public class Registration1Page extends BasePage {
     public boolean areFieldsFilled() {
         if (nameField.getAttribute("value").equals("Dante") &&
             lastNameField.getAttribute("value").equals("Alighieri") &&
-            mailField.getAttribute("value").equals("some.mail@gmail.com") &&
-            element.hasClass(tncBoxError, "sw-form-checkbox--error") &&
-            element.hasClass(ppBoxError, "sw-form-checkbox--error")) {
+            mailField.getAttribute("value").equals("some.mail@gmail.com")) {
                 return true;
         }
         return false;

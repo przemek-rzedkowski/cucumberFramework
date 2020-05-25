@@ -131,7 +131,6 @@ public class MailHelper {
         MessagePart part = message.getPayload().getParts().get(0).getParts().get(0);
         //System.out.println(StringUtils.newStringUtf8(Base64.decodeBase64(part.getBody().getData())));
 
-
         return StringUtils.newStringUtf8(Base64.decodeBase64(part.getBody().getData()));
     }
 

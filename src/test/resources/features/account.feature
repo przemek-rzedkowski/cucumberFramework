@@ -1,4 +1,4 @@
-#@ignore
+@ignore
 Feature: Can Customer change account settings
   Customer should be able to change password and other user settings
 
@@ -13,6 +13,7 @@ Scenario: Customer can see his personal data
   Then Customer should see PV System Name
 
 #@ignore
+  #check salesforce part also
 Scenario: Customer can change other settings
   When Customer switches to Settings tab
   Then Customer sees Settings page
