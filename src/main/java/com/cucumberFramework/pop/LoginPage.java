@@ -2,16 +2,16 @@ package com.cucumberFramework.pop;
 
 
 import com.cucumberFramework.baseTest.BasePage;
+import com.cucumberFramework.support.WaitHelper;
 import com.cucumberFramework.support.WebElementHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import com.cucumberFramework.support.WaitHelper;
-
-import java.util.stream.Stream;
 
 public class LoginPage extends BasePage {
+
+    WebDriver driver;
 
     @FindBy(xpath = "//input[@id = 'user_email']")
     private WebElement loginField;
@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//span[@class = 'eye visible']")
     private WebElement showPasswordButtonVisible;
 
-    @FindBy(xpath = "//div[contains(text(), \"Invalid E-mail or password\")]")
+    @FindBy(xpath = "//div[contains(text(), \"Invalid Email or password\")]")
     private WebElement invalidCredentialsMessage;
 
     @FindBy(xpath = "//a[contains(text(),'Demo-Version!')]")
@@ -39,6 +39,7 @@ public class LoginPage extends BasePage {
     
 
     public LoginPage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
         element = new WebElementHelper(waitHelper, driver);
@@ -59,7 +60,7 @@ public class LoginPage extends BasePage {
         element.type(passwordField, password);
     }
     public void clickLoginButton(){
-        element.click(loginSubmitButton);
+        element.clickWithJS(loginSubmitButton);
     }
 
     public void showPassword() {

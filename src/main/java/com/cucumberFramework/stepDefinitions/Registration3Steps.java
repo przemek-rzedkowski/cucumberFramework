@@ -92,7 +92,7 @@ public class Registration3Steps extends TestBase {
     @Given("^Customer is logged into SalesForce$")
     public void customerIsLoggedIntoSalesForce() {
         salesForcePage.logIn();
-        salesForcePage.confirmLogin(mailPage.extractSFCode());
+        //salesForcePage.confirmLogin(mailPage.extractSFCode());
         assertTrue(salesForcePage.isPageDisplayed());
     }
 

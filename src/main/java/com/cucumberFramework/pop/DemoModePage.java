@@ -32,7 +32,7 @@ public class DemoModePage extends BasePage {
     @FindBy(xpath = "//a[./span[contains(text(), \"sonnenFlat\")]]")
     private WebElement flatButton;
 
-    @FindBy(xpath = "//a[./span[contains(text(), \"sonnenBatterie\")]]")
+    @FindBy(xpath = "//a[./span[contains(text(), \"sonnen Battery\")]]")
     private WebElement batterieButton;
 
     @FindBy(xpath = "//span[contains(text(),'Leave Demo')]")

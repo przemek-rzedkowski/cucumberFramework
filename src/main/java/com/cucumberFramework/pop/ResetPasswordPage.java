@@ -80,7 +80,7 @@ public class ResetPasswordPage extends BasePage {
     public boolean isSubmitAvailable() {
         submitForm();
         String url = driver.getCurrentUrl();
-        if (url.equals("https://my-dev.sonnen.de/reset-password")) {
+        if (url.equals("https://my.staging.sonnen.de/reset-password")) {
             return false;
         }
         return true;

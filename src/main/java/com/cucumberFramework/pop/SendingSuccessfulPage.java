@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class SendingSuccessfulPage extends BasePage {
 
@@ -24,7 +25,7 @@ public class SendingSuccessfulPage extends BasePage {
 
     @Override
     public boolean isPageDisplayed() {
-        waitHelper.justWaitForIt(5000);
+        waitHelper.getFluentWait().until(ExpectedConditions.visibilityOf(sendingSuccessfulHeader));
         return element.isDisplayed(sendingSuccessfulHeader);
     }
 

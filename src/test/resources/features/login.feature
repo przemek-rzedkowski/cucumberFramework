@@ -1,4 +1,4 @@
-@ignore
+#@ignore
 Feature: Can Customer log in
   Customer should be able to log in
 
@@ -16,7 +16,7 @@ Feature: Can Customer log in
     And Customer clicks on login button
     Then Customer should see PV System Name
 
-  @ignore
+  #@ignore
   Scenario: Customer has incorrect credentials
     Given Customer is on Landing page
     When Customer proceed to Login Page
@@ -26,7 +26,7 @@ Feature: Can Customer log in
     And Customer clicks on login button
     Then Customer is unable to log in
 
-  @ignore
+  #@ignore
   Scenario: Customer can see his password
     Given Customer is on Landing page
     Given Customer proceed to Login Page
@@ -35,7 +35,7 @@ Feature: Can Customer log in
     And Customer enables display password feature
     Then Customer can see the password
 
-  @ignore
+  #@ignore
   Scenario: Customer is able to log out
     Given Customer is on Dashboard page
     When Customer goes to User Menu

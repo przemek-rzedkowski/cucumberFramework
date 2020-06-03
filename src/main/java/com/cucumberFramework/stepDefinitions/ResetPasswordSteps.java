@@ -33,7 +33,10 @@ public class ResetPasswordSteps extends TestBase {
     public void customerSelectsThatHeForgotThePassword() { loginPage.goToForgotPassword();}
 
     @Then("^Customer sees forgot password page$")
-    public void customerSeesForgotPasswordPage() { assertTrue(forgotPasswordPage.isPageDisplayed());}
+    public void customerSeesForgotPasswordPage() {
+        assertTrue(forgotPasswordPage.isPageDisplayed());
+        mailPage.deleteAllThreads();
+    }
 
     @When("^Customer inserts his email address to reset$")
     public void customerInsertsHisEmailAddressToReset() { forgotPasswordPage.enterMail();}
@@ -95,7 +98,7 @@ public class ResetPasswordSteps extends TestBase {
     @Then("^Customer sees reset password confirmation page$")
     public void customerSeesResetPasswordConfirmationPage() { assertTrue(resetPasswordConfirmationPage.isPageDisplayed());}
 
-    @When("^Customer selects to go proceed to login page$")
+    @When("^Customer selects to proceed to login page$")
     public void customerSelectsToGoProceedToLoginPage() { resetPasswordConfirmationPage.goToLogin();}
 
     @When("^Customer provides credentials as \"([^\"]*)\" and \"([^\"]*)\"$")

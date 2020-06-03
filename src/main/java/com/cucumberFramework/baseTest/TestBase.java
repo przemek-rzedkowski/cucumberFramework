@@ -37,7 +37,7 @@ public class TestBase {
 			chromeOptions.addArguments("--disable-dev-shm-usage");
 			driver = new RemoteWebDriver(new URL(host), chromeOptions);
 		}
-		driver.get("https://my.dev.sonnen.de/");
+		driver.get("https://my.staging.sonnen.de/");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 		//driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);

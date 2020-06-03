@@ -108,9 +108,7 @@ public class Registration1Page extends BasePage {
         return element.isDisplayed(mailInvalidError);
     }
 
-    public void userSubmitsForm() {
-        element.click(submitButton);
-    }
+    public void userSubmitsForm() { element.click(submitButton); }
 
     public void leaveFieldBlank(String arg1) {
         element.type(nameField, "Marcin");

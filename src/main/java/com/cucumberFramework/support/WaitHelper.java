@@ -2,11 +2,15 @@ package com.cucumberFramework.support;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
 public class WaitHelper {
@@ -15,6 +19,8 @@ public class WaitHelper {
 	
 	private WebDriver driver;
 
+	private FluentWait<WebDriver> fluentWait;
+
 	private WebDriverWait wait;
 
 	long timeOutInSeconds = 7;
@@ -22,6 +28,10 @@ public class WaitHelper {
 	public WaitHelper(WebDriver driver){
 		this.driver = driver;
 		wait = new WebDriverWait(driver, 10);
+		fluentWait = new FluentWait<>(driver).
+				withTimeout(Duration.ofSeconds(10)).
+				pollingEvery(Duration.ofMillis(500)).
+				ignoring(NoSuchElementException.class);
 	}
 	
 	public void waitForElement(WebElement element){
@@ -40,12 +50,5 @@ public class WaitHelper {
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
-	public void justWaitForIt(int howLong) {
-		try {
-			System.out.println("waitin'...");
-			Thread.sleep(howLong);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+	public FluentWait<WebDriver> getFluentWait() { return this.fluentWait; }
 }

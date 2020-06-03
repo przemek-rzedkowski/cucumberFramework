@@ -8,10 +8,10 @@ Feature: Can Customer sign up (part 1)
 
   #@ignore
   Scenario: Customer is able to clear SF DB and mail inbox for next test run
-    Given Customer is logged into SalesForce
-    When Customer deletes users attached to test accounts
-    When Customer deletes mails from inbox
+    Given Customer deletes mails from inbox
     Then Customer sees no mails in inbox
+    When Customer is logged into SalesForce
+    Then Customer deletes users attached to test accounts
 
   # alighieri.dante1508+2@gmail.com | Register 2 DO NOT REMOVE
   #@ignore

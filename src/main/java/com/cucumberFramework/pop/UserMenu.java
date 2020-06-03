@@ -30,9 +30,7 @@ public class UserMenu extends BasePage {
         return false;
     }
 
-    public void logOut() {
-        element.click(logoutButton);
-    }
+    public void logOut() { element.click(logoutButton); }
 
     public void switchToMyAccountPage() { element.click(myAccountButton); }
 }

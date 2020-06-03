@@ -41,11 +41,11 @@ public class Registration2Steps extends TestBase {
     public void customerSubmitsRegistrationForm() { registration2Page.submitForm();}
 
     @Then("^Customer sees successful verification page$")
-    public void customerSeesSuccessfulVerificationPage() { assertTrue(successfulVerificationPage.isPageDisplayed());}
+    public void customerSeesSuccessfulVerificationPage() { assertTrue(successfulVerificationPage.isPageDisplayed()); }
 
     @And("^Customer receives confirmation email using \"([^\"]*)\"$")
     public void customerReceivesConfirmationEmail(String arg0) {
-        assertTrue(mailPage.isMessageDelivered());
+        mailPage.isMessageDelivered();
         mailPage.deleteAllThreadsIfSerialNumber(arg0);
     }
 

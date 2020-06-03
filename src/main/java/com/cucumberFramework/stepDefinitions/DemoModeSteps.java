@@ -18,9 +18,7 @@ public class DemoModeSteps extends TestBase {
     BatteriePage batteriePage = new BatteriePage(driver);
 
     @When("^Customer switches to \"([^\"]*)\"$")
-    public void userGoesToPage(String arg1) {
-        demoModePage.proceedToPage(arg1);
-    }
+    public void userGoesToPage(String arg1) { demoModePage.proceedToPage(arg1); }
 
     @Then("^Customer sees demo \"([^\"]*)\" page$")
     public void userSeesPage(String arg1) {

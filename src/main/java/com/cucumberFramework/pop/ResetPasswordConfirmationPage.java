@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ResetPasswordConfirmationPage extends BasePage {
 
@@ -31,7 +32,7 @@ public class ResetPasswordConfirmationPage extends BasePage {
     }
 
     public void goToLogin() {
-        waitHelper.justWaitForIt(2000);
+        waitHelper.getFluentWait().until(ExpectedConditions.visibilityOf(proceedToLoginButton));
         element.click(proceedToLoginButton);
     }
 }

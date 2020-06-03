@@ -40,12 +40,10 @@ public class LandingPage extends BasePage {
     }
 
     @Override
-    public boolean isPageDisplayed() {
-        return element.isDisplayed(proceedToLoginButton);
-    }
+    public boolean isPageDisplayed() { return element.isDisplayed(proceedToLoginButton); }
 
     public void proceedToLoginPage() {
-        element.click(proceedToLoginButton);
+        element.clickWithJS(proceedToLoginButton);
     }
 
     public void proceedToRegistrationPage() {

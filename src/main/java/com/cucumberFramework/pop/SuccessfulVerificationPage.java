@@ -3,10 +3,19 @@ package com.cucumberFramework.pop;
 import com.cucumberFramework.baseTest.BasePage;
 import com.cucumberFramework.support.WaitHelper;
 import com.cucumberFramework.support.WebElementHelper;
+import com.google.common.base.Function;
+import org.checkerframework.checker.nullness.compatqual.NullableDecl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.NoSuchElementException;
+
+import java.io.IOException;
+import java.time.Duration;
 
 public class SuccessfulVerificationPage extends BasePage {
 
@@ -30,14 +39,16 @@ public class SuccessfulVerificationPage extends BasePage {
 
     @Override
     public boolean isPageDisplayed() {
-        return element.isDisplayed(successfulHeader);
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofSeconds(1))
+                .ignoring(NoSuchElementException.class);
+
+        WebElement elem = wait.until(ExpectedConditions.visibilityOf(successfulHeader));
+        return true;
     }
 
-    public void clickDontReceiveEmail() {
-        element.click(troubleshootingButton);
-    }
+    public void clickDontReceiveEmail() { element.click(troubleshootingButton); }
 
-    public boolean isTroubleshootingDisplayed() {
-        return element.isDisplayed(troubleshootingPageHeader);
-    }
+    public boolean isTroubleshootingDisplayed() { return element.isDisplayed(troubleshootingPageHeader); }
 }

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import java.util.List;
 
 public class WebElementHelper {
@@ -61,8 +61,12 @@ public class WebElementHelper {
 
     public boolean isDisplayed(WebElement element) {
         waitHelper.waitForPageLoaded(driver);
-        waitHelper.waitForElement(element);
-        return element.isDisplayed();
+        return waitHelper.getFluentWait().until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                return element.isDisplayed();
+            }
+        });
     }
 
     public boolean isEnabled(WebElement element) {
@@ -77,6 +81,11 @@ public class WebElementHelper {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void clickWithJS(WebElement element) {
+        waitHelper.waitForPageLoaded(driver);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
     public void clickIfThereIsElement(WebElement element, String xpath) {

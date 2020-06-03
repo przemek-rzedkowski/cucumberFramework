@@ -1,4 +1,4 @@
-@ignore
+#@ignore
 Feature: Can Customer experience app without log in
   Customer should be able to experience basic functionalities without having to log in
 
@@ -16,7 +16,7 @@ Feature: Can Customer experience app without log in
     When Customer goes back to registration
     Then Customer is on Registration Page
 
-  @ignore
+  #@ignore
   Scenario Outline: Customer goes through demo mode pages
     When Customer switches to "<page>"
     Then Customer sees demo "<page>" page

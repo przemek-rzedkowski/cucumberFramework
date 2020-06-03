@@ -3,10 +3,9 @@ package com.cucumberFramework.pop;
 import com.cucumberFramework.baseTest.BasePage;
 import com.cucumberFramework.support.MailHelper;
 import com.cucumberFramework.support.WaitHelper;
-import com.cucumberFramework.support.WebElementHelper;
 import com.google.api.services.gmail.model.Message;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +19,7 @@ public class MailPage extends BasePage {
 
     public MailPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
         waitHelper = new WaitHelper(driver);
-        element = new WebElementHelper(waitHelper, driver);
         mailHelper = new MailHelper(driver);
     }
 
@@ -48,16 +45,20 @@ public class MailPage extends BasePage {
 
 
     public boolean isMessageDelivered() {
-        List<Message> sandbox = null;
-        waitHelper.justWaitForIt(5000);
-        try {
-            sandbox = mailHelper.listMessagesMatchingQuery("Sandbox");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert sandbox != null;
-        //System.out.println("sandbox.size = " + sandbox.size());
-        return sandbox.size() == 1;
+        final List[] sandbox = new List[]{null};
+        return waitHelper.getFluentWait().until(new ExpectedCondition<Boolean>() {
+            @Override
+            public Boolean apply(WebDriver driver) {
+                try {
+                    sandbox[0] = mailHelper.listMessagesMatchingQuery("Sandbox");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                assert sandbox[0] != null;
+                //System.out.println("sandbox = " + sandbox[0].size());
+                return sandbox[0].size() == 1;
+            }
+        });
     }
 
     public void deleteAllThreads() {
@@ -68,56 +69,48 @@ public class MailPage extends BasePage {
         }
     }
 
-    public void deleteAllThreadsIfSerialNumber(String arg0) { if (arg0.equals("serial number")) deleteAllThreads(); }
-
-    public String extractActivationToken() {
+    private String extractToken(String query) {
         String messageId;
         String msgText = null;
         try {
-            messageId = mailHelper.listMessagesMatchingQuery("Sandbox: Einladung zur sonnenCommunity").get(0).getId();
-            msgText = mailHelper.getMessage(messageId);
+            messageId = mailHelper.listMessagesMatchingQuery(query).get(0).getId();
+            msgText = mailHelper.getMessageRaw(messageId);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.println(msgText);
         assert msgText != null;
+        return msgText;
+    }
+
+    public void deleteAllThreadsIfSerialNumber(String arg0) { if (arg0.equals("serial number")) deleteAllThreads(); }
+
+    public String extractActivationToken() {
+        String msgText = extractToken("Sandbox: Einladung zur sonnenCommunity");
+
         int start = msgText.indexOf("https://my.de");
-        return msgText.substring(start, start + 233);
+        String url =  msgText.substring(start, start + 242);
+        url = url.replace("=", "");
+        return url.replaceFirst("dev", "staging");
     }
 
     public String breakActivationToken() { return extractActivationToken().replaceFirst("0","1");}
 
     public String extractResetPasswordToken() {
-        String messageId;
-        String msgText = null;
-        try {
-            messageId = mailHelper.listMessagesMatchingQuery("Sandbox: sonnenCommunity - Passwort zurücksetzen").get(0).getId();
-            msgText = mailHelper.getMessageRaw(messageId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert msgText != null;
-        int start = msgText.indexOf("https://my-de");
+        String msgText = extractToken("Sandbox: sonnenCommunity - Passwort zurücksetzen");
+
+        int start = msgText.indexOf("https://my.de");
         String url = msgText.substring(start, start + 254);
-        return url.replace("=", "");
+        url = url.replace("=", "");
+        url = url.replaceFirst("de", "staging");
+        return url.replaceFirst("v", "");
     }
 
     public String breakResetPasswordToken() { return extractResetPasswordToken().replaceFirst("0", "1"); }
 
     public String extractSFCode() {
-        waitHelper.justWaitForIt(3000);
-        String messageId;
-        String msgText = null;
-        try {
-            messageId = mailHelper.listMessagesMatchingQuery("Sandbox: Verify your identity in Salesforce").get(0).getId();
-            msgText = mailHelper.getMessageRaw(messageId);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assert msgText != null;
+        String msgText = extractToken("Sandbox: Verify your identity in Salesforce");
+
         int start = msgText.indexOf("Code:") + 6;
-        String code = msgText.substring(start, start + 5);
-        //System.out.println(code);
-        return code;
+        return msgText.substring(start, start + 5);
     }
 }

@@ -1,16 +1,20 @@
 package com.cucumberFramework.pop;
 
 import com.cucumberFramework.baseTest.BasePage;
-import com.cucumberFramework.support.MailHelper;
 import com.cucumberFramework.support.WaitHelper;
 import com.cucumberFramework.support.WebElementHelper;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 
-import static com.cucumberFramework.support.PropertiesHelper.*;
+import java.time.Duration;
+
+import static com.cucumberFramework.support.PropertiesHelper.properties;
 
 
 public class SalesForcePage extends BasePage {
@@ -79,9 +83,9 @@ public class SalesForcePage extends BasePage {
         for (int i = 0; i < 3; i++) {
             accountId = "config.accounts." + i;
             driver.get("https://sonnen--external.lightning.force.com/lightning/r/Account/" + properties.getProperty(accountId) + "/view");
-            waitHelper.justWaitForIt(5000);
+            waitHelper.getFluentWait().until(ExpectedConditions.visibilityOf(deleteUserButton));
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", deleteUserButton);
-            waitHelper.justWaitForIt(5000);
+            waitHelper.getFluentWait().until(ExpectedConditions.visibilityOf(createUserButton));
             if (!element.isDisplayed(createUserButton)) return false;
         }
         return true;
